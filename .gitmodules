@@ -1,6 +1,3 @@
-[submodule "Nodel/vender/spdlog"]
-	path = Nodel/vender/spdlog
-	url = https://github.com/gabime/spdlog
 [submodule "Nodel/vendor/spdlog"]
 	path = Nodel/vendor/spdlog
 	url = https://github.com/gabime/spdlog
