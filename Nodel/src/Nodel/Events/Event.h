@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Nodel/Core/Base.h"
-#include <string>
+#include "ndpch.h"
 
 namespace Nodel {
 	enum class EventType {
@@ -20,7 +20,15 @@ namespace Nodel {
 		EventCategoryMouseButton = BIT(4),
 	};
 
+#define  ND_EVENT_TYPE(event) \
+	const char* GetName() const override{ return #event; }\
+	static EventType GetStaticEventType() { return EventType::event; }\
+	EventType GetEventType() const override{ return GetStaticEventType(); }
+#define  ND_EVENT_CATEGORY(category)\
+	int GetCategoryFlags() const override{ return category; }
+
 	class Event {
+		friend class EventDispatcher;
 	public:
 		virtual ~Event() = default;
 		virtual EventType GetEventType() const = 0;
@@ -28,10 +36,11 @@ namespace Nodel {
 		virtual int GetCategoryFlags() const = 0;
 		virtual std::string ToString() const { return GetName(); }
 
-		bool IsInCategory(EventCategory category) {
+		inline bool IsInCategory(EventCategory category) {
 			return GetCategoryFlags() & category;
 		}
 
+		bool Handled = false;
 	};
 
 	class EventDispatcher {
@@ -41,8 +50,14 @@ namespace Nodel {
 		{
 
 		}
-		bool Dispatch() {
-
+		// F will be deduced by the compiler
+		template<typename T, typename F>
+		bool Dispatch(const F& func) {
+			if (m_Event.GetEventType() == T::GetStaticEventType()) {
+				m_Event.Handled = func(static_cast<T&>(m_Event));
+				return true;
+			}
+			return false;
 		}
 	private:
 		Event& m_Event;

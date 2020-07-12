@@ -16,6 +16,17 @@ workspace "Nodel"
 
 outputdir = "{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+INCLUDEDIR = {}
+INCLUDEDIR['glfw'] = 'Nodel/vendor/glfw/include'
+INCLUDEDIR['glad'] = 'Nodel/vendor/glad/include'
+INCLUDEDIR['imgui'] = 'Nodel/vendor/imgui'
+
+group "Depandency"
+	include "Nodel/vendor/glfw"
+	include "Nodel/vendor/glad"
+	include "Nodel/vendor/imgui"
+
+group ""
 project "Nodel"
 	location "Nodel"
 	kind "StaticLib"
@@ -24,6 +35,10 @@ project "Nodel"
 	staticruntime "on"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	pchheader "ndpch.h"
+	pchsource "%{prj.name}/src/ndpch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",
@@ -38,11 +53,17 @@ project "Nodel"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{INCLUDEDIR.glfw}",
+		"%{INCLUDEDIR.glad}",
+		"%{INCLUDEDIR.imgui}"
 	}
 
 	links
 	{
+		"GLFW",
+		"GLAD",
+		"ImGui",
 		"opengl32.lib"
 	}
 
@@ -50,11 +71,12 @@ project "Nodel"
 		systemversion "latest"
 		defines
 		{
+			"ND_PLATFORM_WINDOWS",
 			"ND_BUILD_DLL"
 		}
 
 	filter "configurations:Debug"
-		defines "ND_DEBUG"
+		defines "ND_DEBUG;ND_ENABLE_ASSERTS"
 		runtime "Debug"
 		symbols "on"
 
@@ -91,7 +113,8 @@ project "Sandbox"
 
 	includedirs
 	{
-		"Nodel/src"
+		"Nodel/src",
+		"Nodel/vendor/spdlog/include"
 	}
 
 	links
