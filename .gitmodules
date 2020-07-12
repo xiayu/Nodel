@@ -7,3 +7,7 @@
 [submodule "Nodel\\vendor\\glad"]
 	path = Nodel\\vendor\\glad
 	url = https://github.com/xiayu/glad
+[submodule "Nodel\\vendor\\imgui"]
+	path = Nodel\\vendor\\imgui
+	url = https://github.com/xiayu/imgui
+	branch = docking

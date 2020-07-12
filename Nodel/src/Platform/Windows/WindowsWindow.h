@@ -1,5 +1,7 @@
 #pragma once
 #include "Nodel/Core/Window.h"
+#include "Nodel/Renderer/GraphicsContext.h"
+
 #include "GLFW/glfw3.h"
 
 namespace Nodel {
@@ -36,6 +38,8 @@ namespace Nodel {
 		};
 
 		WindowData window_data;
+
+		Uni<GraphicsContext> m_Context;
 	};
 }
 

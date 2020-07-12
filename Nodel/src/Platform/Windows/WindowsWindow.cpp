@@ -4,6 +4,7 @@
 #include "Nodel/Events/KeyEvent.h"
 #include "Nodel/Events/MouseEvent.h"
 #include "Nodel/Events/WindowsEvent.h"
+#include "Nodel/Renderer/GraphicsContext.h"
 
 namespace Nodel {
 
@@ -41,7 +42,9 @@ namespace Nodel {
 
 		m_NativeWindow = glfwCreateWindow((int)prop.Width, (int)prop.Height, prop.Title.c_str(), nullptr, nullptr);
 
-		glfwMakeContextCurrent(m_NativeWindow);
+		m_Context = GraphicsContext::Create(m_NativeWindow);
+		m_Context->Init();
+
 		glfwSetWindowUserPointer(m_NativeWindow, &window_data);
 		SetVSync(true);
 
@@ -146,8 +149,6 @@ namespace Nodel {
 
 	void WindowsWindow::OnUpdate() {
 		glfwPollEvents();
-		glfwSwapBuffers(m_NativeWindow);
+		m_Context->SwapBuffers();
 	}
-
-
 }
