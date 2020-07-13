@@ -1,6 +1,3 @@
-[submodule "Nodel/vendor/spdlog"]
-	path = Nodel/vendor/spdlog
-	url = https://github.com/gabime/spdlog
 [submodule "Nodel/vendor/glfw"]
 	path = Nodel/vendor/glfw
 	url = https://github.com/xiayu/glfw
@@ -11,3 +8,6 @@
 	path = Nodel/vendor/imgui
 	url = https://github.com/xiayu/imgui
 	branch = docking
+[submodule "Nodel/vendor/spdlog"]
+	path = Nodel/vendor/spdlog
+	url = https://github.com/xiayu/spdlog.git
