@@ -20,6 +20,7 @@ INCLUDEDIR = {}
 INCLUDEDIR['glfw'] = 'Nodel/vendor/glfw/include'
 INCLUDEDIR['glad'] = 'Nodel/vendor/glad/include'
 INCLUDEDIR['imgui'] = 'Nodel/vendor/imgui'
+INCLUDEDIR['glm'] = 'Nodel/vendor/glm'
 
 group "Depandency"
 	include "Nodel/vendor/glfw"
@@ -42,7 +43,9 @@ project "Nodel"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
 
 	defines
@@ -57,7 +60,8 @@ project "Nodel"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{INCLUDEDIR.glfw}",
 		"%{INCLUDEDIR.glad}",
-		"%{INCLUDEDIR.imgui}"
+		"%{INCLUDEDIR.imgui}",
+		"%{INCLUDEDIR.glm}"
 	}
 
 	links

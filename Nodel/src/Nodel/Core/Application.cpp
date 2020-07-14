@@ -1,6 +1,8 @@
 #include "ndpch.h"
 #include "Application.h"
 
+#include "glad/glad.h"
+
 namespace Nodel {
 
 	Application* Application::s_Instance = nullptr;
@@ -25,17 +27,20 @@ namespace Nodel {
 	{
 		while (m_Running)
 		{
-			m_Window->OnUpdate();
+			glClearColor(1, 0, 1, 1);
+			glClear(GL_COLOR_BUFFER_BIT);
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 
 			m_ImguiLayer->Begin();
 			{
-				//for (Layer* layer : m_LayerStack)
-				//	layer->OnImGuiRender();
+				for (Layer* layer : m_LayerStack)
+					layer->OnImGuiRender();
 			}
 			m_ImguiLayer->End();
+
+			m_Window->OnUpdate();
 		}
 	}
 
