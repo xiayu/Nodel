@@ -1,6 +1,7 @@
 #include "ndpch.h"
-#include "Buffer.h"
+#include "Platform/OpenGL/OpenGLShaderDataType.h"
 
+#include "Buffer.h"
 #include "Platform/OpenGL/OpenGLBuffer.h"
 
 namespace Nodel {
