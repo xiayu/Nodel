@@ -14,3 +14,6 @@
 [submodule "Nodel/vendor/glm"]
 	path = Nodel/vendor/glm
 	url = https://github.com/xiayu/glm.git
+[submodule "Nodel/vendor/stb_image"]
+	path = Nodel/vendor/stb_image
+	url = https://github.com/xiayu/stb_image.git

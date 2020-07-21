@@ -1,4 +1,8 @@
 #pragma once
+#include "Nodel/Renderer/RenderAPI.h"
+#include "Nodel/Renderer/Shader.h"
+#include "Nodel/Renderer/VertexArray.h"
+
 namespace Nodel {
 	class Renderer {
 	public:
@@ -10,6 +14,10 @@ namespace Nodel {
 		static void BeginScene();
 		static void EndScene();
 
-		static void Submit();
+		static void Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexarray);
+
+		static RenderAPI::API GetAPI() { return RenderAPI::GetAPI(); }
+
+	private:
 	};
 }

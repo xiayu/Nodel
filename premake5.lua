@@ -21,6 +21,7 @@ INCLUDEDIR['glfw'] = 'Nodel/vendor/glfw/include'
 INCLUDEDIR['glad'] = 'Nodel/vendor/glad/include'
 INCLUDEDIR['imgui'] = 'Nodel/vendor/imgui'
 INCLUDEDIR['glm'] = 'Nodel/vendor/glm'
+INCLUDEDIR['stb_image'] = 'Nodel/vendor/stb_image'
 
 group "Depandency"
 	include "Nodel/vendor/glfw"
@@ -44,6 +45,8 @@ project "Nodel"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
@@ -61,7 +64,8 @@ project "Nodel"
 		"%{INCLUDEDIR.glfw}",
 		"%{INCLUDEDIR.glad}",
 		"%{INCLUDEDIR.imgui}",
-		"%{INCLUDEDIR.glm}"
+		"%{INCLUDEDIR.glm}",
+		"%{INCLUDEDIR.stb_image}"
 	}
 
 	links
