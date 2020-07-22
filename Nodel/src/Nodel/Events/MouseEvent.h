@@ -12,8 +12,8 @@ namespace Nodel {
 		ND_EVENT_CATEGORY(EventCategoryMouse)
 		ND_EVENT_TYPE(MouseMoved)
 
-		int GetMouseX() const { return m_MouseX; }
-		int GetMouseY() const { return m_MouseY; }
+		float GetMouseX() const { return m_MouseX; }
+		float GetMouseY() const { return m_MouseY; }
 
 		std::string ToString() const {
 			std::stringstream ss;

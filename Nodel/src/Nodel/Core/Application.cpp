@@ -2,6 +2,8 @@
 #include "Application.h"
 
 #include "glad/glad.h"
+// tmp
+#include <GLFW/glfw3.h>
 
 namespace Nodel {
 
@@ -30,8 +32,12 @@ namespace Nodel {
 			glClearColor(1, 0, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
+			float time = (float)glfwGetTime();
+			TimeStep timestep = time - m_LastFrameTime;
+			m_LastFrameTime = time;
+
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate();
+				layer->OnUpdate(timestep);
 
 			m_ImguiLayer->Begin();
 			{
