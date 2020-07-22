@@ -11,9 +11,9 @@ namespace Nodel {
 		virtual void SetInt(const char* name, int value) = 0;
 		virtual void SetIntArray(const char* name, int* values, unsigned int count) = 0;
 		virtual void SetFloat(const char* name, float value) = 0;
-		virtual void SetFloat3(const char* name, glm::vec3& value) = 0;
-		virtual void SetFloat4(const char* name, glm::vec4& value) = 0;
-		virtual void SetMat4(const char* name, glm::mat4& value) = 0;
+		virtual void SetFloat3(const char* name, const glm::vec3& value) = 0;
+		virtual void SetFloat4(const char* name, const glm::vec4& value) = 0;
+		virtual void SetMat4(const char* name, const glm::mat4& value) = 0;
 
 		virtual std::string GetName() const = 0;
 

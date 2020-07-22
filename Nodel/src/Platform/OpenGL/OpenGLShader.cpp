@@ -74,19 +74,19 @@ namespace Nodel {
 		glUniform1f(location, value);
 	}
 
-	void OpenGLShader::SetFloat3(const char* name, glm::vec3& value)
+	void OpenGLShader::SetFloat3(const char* name, const glm::vec3& value)
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name);
 		glUniform3f(location, value.x, value.y, value.z);
 	}
 
-	void OpenGLShader::SetFloat4(const char* name, glm::vec4& value)
+	void OpenGLShader::SetFloat4(const char* name, const glm::vec4& value)
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name);
 		glUniform4f(location, value.x, value.y, value.z, value.w);
 	}
 
-	void OpenGLShader::SetMat4(const char* name, glm::mat4& value)
+	void OpenGLShader::SetMat4(const char* name, const glm::mat4& value)
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name);
 		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));

@@ -10,7 +10,8 @@ namespace Nodel {
 		bool m_Normalized;
 
 		BufferElement() = default;
-		BufferElement(ShaderDataType type, std::string& name, bool normalized = false) :
+
+		BufferElement(ShaderDataType type, const std::string& name, bool normalized = false) :
 			m_Type(type), m_Name(name), m_Size(ShaderDataTypeSize(type)), m_Offset(0), m_Normalized(normalized) {
 		}
 	};
@@ -18,8 +19,8 @@ namespace Nodel {
 	class BufferLayout {
 	public:
 		BufferLayout() {}
-		BufferLayout(std::initializer_list<BufferElement>& elements) :
-			m_Elements(elements) {
+		BufferLayout(const std::initializer_list<BufferElement>& elements) 
+			:m_Elements(elements) {
 			CalculateOffsetAndStride();
 		}
 
@@ -44,7 +45,7 @@ namespace Nodel {
 		}
 
 		std::vector<BufferElement> m_Elements;
-		uint32_t m_Stride;
+		uint32_t m_Stride = 0;
 	};
 
 	class VertexBuffer {
