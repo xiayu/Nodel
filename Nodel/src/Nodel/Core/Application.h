@@ -38,7 +38,7 @@ namespace Nodel {
 		LayerStack m_LayerStack;
 
 		ImGuiLayer* m_ImguiLayer;
-		float m_LastFrameTime;
+		float m_LastFrameTime = 0.0f;
 
 	};
 

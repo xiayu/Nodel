@@ -1,12 +1,14 @@
 #include "ndpch.h"
 #include "Renderer.h"
 #include "RenderCommand.h"
+#include "Renderer2D.h"
 
 namespace Nodel {
 
 	void Renderer::Init()
 	{
 		RenderCommand::Init();
+		Renderer2D::Init();
 	}
 
 	void Renderer::Shutdown()

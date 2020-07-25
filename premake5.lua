@@ -123,7 +123,9 @@ project "Sandbox"
 	includedirs
 	{
 		"Nodel/src",
-		"Nodel/vendor/spdlog/include"
+		"Nodel/vendor/spdlog/include",
+		"Nodel/vendor",
+		"%{INCLUDEDIR.glm}",
 	}
 
 	links

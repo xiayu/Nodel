@@ -37,7 +37,7 @@ namespace Nodel {
 		void CalculateOffsetAndStride() {
 			size_t offset = 0;
 			m_Stride = 0;
-			for (BufferElement element : m_Elements) {
+			for (BufferElement& element : m_Elements) {
 				element.m_Offset =(uint32_t)offset;
 				offset += element.m_Size;
 				m_Stride += element.m_Size;

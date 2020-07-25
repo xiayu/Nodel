@@ -6,11 +6,14 @@
 
 namespace Nodel {
 
-	CameraController::CameraController(Ref<Camera> camera, float aspectRatio, bool rotation) 
-		:m_Camera(camera), m_AspectRatio(aspectRatio), m_Rotation(rotation) {
-
+	CameraController::CameraController(Camera& camera)
+		:m_Camera(camera),m_Rotation(false), m_AspectRatio(1.0f)
+	{
 	}
-
+	
+	void CameraController::SetCamera(Camera& camera) {
+		m_Camera = camera;
+	}
 	void CameraController::OnUpdate(TimeStep ts)
 	{
 		if (Input::IsKeyPressed(ND_KEY_A))
@@ -47,10 +50,10 @@ namespace Nodel {
 			else if (m_CameraRotation <= -180.0f)
 				m_CameraRotation += 360.0f;
 
-			m_Camera->SetRotation(m_CameraRotation);
+			m_Camera.SetRotation(m_CameraRotation);
 		}
 
-		m_Camera->SetPosition(m_CameraPosition);
+		m_Camera.SetPosition(m_CameraPosition);
 
 		m_CameraTranslationSpeed = m_ZoomLevel;
 	}
@@ -65,14 +68,16 @@ namespace Nodel {
 	void CameraController::OnResize(float width, float height)
 	{
 		m_AspectRatio = width / height;
-		((OrthographicCamera&)*m_Camera).SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
+		if(m_Camera.GetType() == Camera::CameraType::Orthographic)
+			((OrthographicCamera&)m_Camera).SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
 	}
 
 	bool CameraController::OnMouseScrolled(MouseScrolleEvent& e)
 	{
 		m_ZoomLevel -= e.GetYOffset() * 0.25f;
 		m_ZoomLevel = std::max(m_ZoomLevel, 0.25f);
-		((OrthographicCamera&)*m_Camera).SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
+		if(m_Camera.GetType() == Camera::CameraType::Orthographic)
+			((OrthographicCamera&)m_Camera).SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
 		return false;
 	}
 

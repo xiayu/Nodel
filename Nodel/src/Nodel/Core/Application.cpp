@@ -1,6 +1,8 @@
 #include "ndpch.h"
 #include "Application.h"
 
+#include "Nodel/Renderer/Renderer.h"
+
 #include "glad/glad.h"
 // tmp
 #include <GLFW/glfw3.h>
@@ -16,6 +18,8 @@ namespace Nodel {
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(ND_EVENT_BIND_FUNC(Application::OnEvent));
+
+		Renderer::Init();
 
 		m_ImguiLayer = new ImGuiLayer();
 		PushOverlay(m_ImguiLayer);
@@ -82,7 +86,9 @@ namespace Nodel {
 
 	bool Application::OnWindowResized(WindowResizedEvent& event) {
 		ND_INFO("OnWindowResized:({0}, {1})", event.GetWidth(), event.GetHeight());
+		Renderer::OnWindowResized(event.GetWidth(), event.GetHeight());
 		return true;
+
 	}
 
 }

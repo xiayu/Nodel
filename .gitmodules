@@ -17,3 +17,6 @@
 [submodule "Nodel/vendor/stb_image"]
 	path = Nodel/vendor/stb_image
 	url = https://github.com/xiayu/stb_image.git
+[submodule "Nodel/vendor/assimp"]
+	path = Nodel/vendor/assimp
+	url = https://github.com/xiayu/assimp.git
